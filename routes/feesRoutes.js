@@ -39,7 +39,7 @@ router.put("/:id", async (req, res) => {
     const updatedFee = await Fees.findByIdAndUpdate(
       req.params.id,
       req.body,
-      { new: true } // updated document परत पाठवतो
+      { new: true } 
     ).populate("student", "name");
 
     if (!updatedFee) return res.status(404).json({ message: "Fees record not found" });
