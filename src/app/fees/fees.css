@@ -1,0 +1,10 @@
+.container{
+    margin-top: 115px;
+}
+table{
+    text-align: center;
+}
+.headingcolor{
+    background: linear-gradient(135deg, #1d2671 0%, #c33764 100%);
+  color: #fff;
+}
