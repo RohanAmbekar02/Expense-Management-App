@@ -19,7 +19,7 @@ export class App {
   }
 
  isLoggedIn = true;       
-  userName = 'Thinkify Software Services';   
+  userName = 'Thinkify Software';   
 
   logout() {
     console.log('User logged out');

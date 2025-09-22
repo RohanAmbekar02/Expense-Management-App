@@ -16,6 +16,8 @@
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
+               "src/assets",
+               "src/favicon.ico",
               {
                 "glob": "**/*",
                 "input": "public"
@@ -75,6 +77,8 @@
           "options": {
             "tsConfig": "tsconfig.spec.json",
             "assets": [
+               "src/assets",
+               "src/favicon.ico",
               {
                 "glob": "**/*",
                 "input": "public"

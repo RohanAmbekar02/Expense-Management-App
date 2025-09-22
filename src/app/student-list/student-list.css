@@ -1,5 +1,5 @@
-.container{
-    margin-top: 115px;
+/* .container{
+    margin-top: 60px;
 }
 table{
     text-align: center;
@@ -7,4 +7,48 @@ table{
 .headingcolor{
     background: linear-gradient(135deg, #1d2671 0%, #c33764 100%);
   color: #fff;
+}
+button{
+    /* margin-right: 5px;
+    margin-top: 30px;
+    background: linear-gradient(135deg, #1d2671 0%, #c33764 100%);
+    color: #fff;
+    /* Remove negative margin
+} */
+
+
+.container {
+  margin-top: 100px; /* increase to clear navbar height */
+}
+
+.headingcolor {
+  background: linear-gradient(135deg, #1d2671 0%, #c33764 100%);
+  color: #fff;
+}
+
+.table tbody tr:hover {
+  background-color: #f8f9fa;
+  cursor: pointer;
+}
+
+.btn-add {
+   color: #fff;
+ background: linear-gradient(135deg, #1d2671 0%, #c33764 100%);
+  border: none;
+  border-radius: 8px;
+  padding: 6px 14px;
+  transition: 0.3s;
+}
+
+.btn-add:hover {
+  opacity: 0.9;
+}
+
+.table td,
+.table th {
+  vertical-align: middle;
+}
+
+.table {
+  margin-bottom: 0 !important; /* remove bottom space */
 }

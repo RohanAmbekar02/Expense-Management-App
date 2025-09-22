@@ -1,50 +1,50 @@
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <table class="table table-hover table-bordered table-responsive ">
-                <thead>
-                    <tr class="headingcolor text-white">
-                        <th scope="col">Id</th>
-                        <th scope="col">Student Name</th>
-                        <th scope="col">Contact Number</th>
-                        <th scope="col">Course</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                   
-                </tbody>
-            </table>
-        </div>
-    </div>
+
+
+<div class="container ">
+
+ 
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="fw-bold">Student List</h5>
+    <button class="btn btn-add" (click)="openpopup()">
+      <i class="fas fa-plus"></i> Add Student
+    </button>
+  </div>
+
+
+  <div class="table-responsive">
+    <table class="table table-hover table-bordered align-middle mb-0">
+      <thead>
+        <tr class="headingcolor text-white text-center">
+          <th scope="col">Id</th>
+          <th scope="col">Student Name</th>
+          <th scope="col">Contact Number</th>
+         
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody class="text-center">
+        <tr>
+          <td>1</td>
+          <td>Mark</td>
+          <td>1234567890</td>
+       
+          <td>
+            <button class="btn btn-sm btn-outline-primary"><i class="fas fa-edit"></i></button>&nbsp;
+            <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Jacob</td>
+          <td>9876543210</td>
+     
+          <td>
+            <button class="btn btn-sm btn-outline-primary"><i class="fas fa-edit"></i></button>&nbsp;
+            <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+          </td>
+        </tr>
+   
+      </tbody>
+    </table>
+  </div>
 </div>

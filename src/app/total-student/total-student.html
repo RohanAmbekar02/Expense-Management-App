@@ -1,42 +1,37 @@
-<!-- <div class="form-container">
+<div class="form-container">
   <div class="form-card">
     <div class="form-header">
-      <img src="assets/student.png" alt="student" class="student-icon">
+  <img src="assets/images/rohan.jpg" alt="student" class="student-icon">
       <h2>🎓 Student Registration</h2>
       <p>Fill out the form to enroll</p>
-    </div>
+    </div><hr>
 
     <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
 
      
-      <div class="input-group">
+      <!-- <div class="input-group">
         <i class="fas fa-id-card"></i>
         <input type="text" placeholder="Student ID" formControlName="id">
-      </div>
-      <div class="error" *ngIf="studentForm.get('id')?.invalid && studentForm.get('id')?.touched">
-        Student ID is required
-      </div>
+      </div> -->
+
 
       
       <div class="input-group">
         <i class="fas fa-user"></i>
         <input type="text" placeholder="Full Name" formControlName="name">
       </div>
-      <div class="error" *ngIf="studentForm.get('name')?.invalid && studentForm.get('name')?.touched">
-        Name is required
-      </div>
-
+ 
      
       <div class="input-group">
         <i class="fas fa-phone"></i>
         <input type="text" placeholder="Contact Number" formControlName="contact">
-      </div>
-      <div class="error" *ngIf="studentForm.get('contact')?.invalid && studentForm.get('contact')?.touched">
-        Contact must be 10 digits
-      </div>
+      </div><br>
+     
+ 
+      <button type="submit" [disabled]="studentForm.invalid " class="mr-2 button" >Submit</button>&nbsp;
+       <button class="ml-3 cancel"  onclick=" onCancel()">Cancel</button>
 
-      <button type="submit" [disabled]="studentForm.invalid">Submit</button>
     </form>
   </div>
 </div>
- -->
+
