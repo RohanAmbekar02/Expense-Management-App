@@ -1,36 +1,60 @@
+<!-- 
 <div class="form-container">
   <div class="form-card">
-    <div class="form-header">
-  <img src="assets/images/rohan.jpg" alt="student" class="student-icon">
+    <div class="form-header text-center">
+      <img src="assets/images/rohan.jpg" alt="student" class="student-icon mb-2">
       <h2>🎓 Student Registration</h2>
       <p>Fill out the form to enroll</p>
-    </div><hr>
-
+    </div>
+    <hr>
     <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
-
-     
-      <!-- <div class="input-group">
-        <i class="fas fa-id-card"></i>
-        <input type="text" placeholder="Student ID" formControlName="id">
-      </div> -->
-
-
-      
-      <div class="input-group">
-        <i class="fas fa-user"></i>
-        <input type="text" placeholder="Full Name" formControlName="name">
+       <div class="input-group mb-3">
+        <i class="fas fa-user input-icon"></i>
+        <input type="text" class="form-control" placeholder="Full Name" formControlName="name">
       </div>
- 
-     
-      <div class="input-group">
-        <i class="fas fa-phone"></i>
-        <input type="text" placeholder="Contact Number" formControlName="contact">
-      </div><br>
-     
- 
-      <button type="submit" [disabled]="studentForm.invalid " class="mr-2 button" >Submit</button>&nbsp;
-       <button class="ml-3 cancel"  onclick=" onCancel()">Cancel</button>
 
+      <div class="input-group mb-3">
+        <i class="fas fa-phone input-icon"></i>
+        <input type="text" class="form-control" placeholder="Contact Number" formControlName="contact">
+      </div>
+
+      <div class="d-flex gap-2">
+        <button type="submit" class="mr-2 button w-100 btn-block" [disabled]="studentForm.invalid" >Submit</button>
+        <button type="button" class="ml-3 cancel" (click)="cancel()">Cancel</button> 
+      </div>
+     
+    </form>    
+  </div>
+</div> -->
+
+<div class="form-container">
+  <div class="form-card position-relative">
+    
+    
+    <button type="button" class="close-btn" (click)="closeForm()">
+      <i class="fas fa-times"></i>
+    </button>
+
+    <div class="form-header text-center">
+      <img src="assets/images/rohan.jpg" alt="student" class="student-icon mb-2">
+      <h2>🎓 Student Registration</h2>
+      <p>Fill out the form to enroll</p>
+    </div>
+    <hr>
+    <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+      <div class="input-group mb-3">
+        <i class="fas fa-user input-icon"></i>
+        <input type="text" class="form-control" placeholder="Full Name" formControlName="name">
+      </div>
+
+      <div class="input-group mb-3">
+        <i class="fas fa-phone input-icon"></i>
+        <input type="text" class="form-control" placeholder="Contact Number" formControlName="contact">
+      </div>
+
+      <div class="d-flex gap-2">
+        <button type="submit" class="mr-2 button w-100 btn-block" [disabled]="studentForm.invalid">Submit</button>
+      </div>
     </form>
   </div>
 </div>

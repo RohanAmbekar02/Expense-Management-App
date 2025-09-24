@@ -1,14 +1,15 @@
-
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Student } from './student.model';
+
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class StudentService {
-  private apiUrl = 'http://localhost:8000/students'; // Update this URL as per your backend
+   private apiUrl = 'http://localhost:8000/api/students';
 
   constructor(private http: HttpClient) {}
 
@@ -16,9 +17,16 @@ export class StudentService {
     return this.http.get<Student[]>(this.apiUrl);
   }
 
-  deleteStudent(id: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+  addStudent(student: Student): Observable<Student> {
+    return this.http.post<Student>(this.apiUrl, student);
   }
 
-  // Add more methods as needed (addStudent, updateStudent, etc.)
-}
+  updateStudent(id: string, student: Student): Observable<Student> {
+    return this.http.put<Student>(`${this.apiUrl}/${id}`, student);
+  }
+
+  deleteStudent(id: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }}
+
+

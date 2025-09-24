@@ -8,7 +8,12 @@ const app = express();
 const PORT = 8000;
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:4200',
+  methods: ['GET','POST','PUT','DELETE'],
+  allowedHeaders: ['Content-Type','Authorization']
+}));
+
 connectDb();
 
 app.use('/api/auth', authRoutes);

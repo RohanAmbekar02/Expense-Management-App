@@ -3,7 +3,7 @@
 .form-card {
   background: #fff;
   padding: 30px;
-  border-radius: 15px;
+  border-radius: 10px;
   width: 100%;
   max-width: 500px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
@@ -82,4 +82,21 @@ button:hover:not(:disabled) {
  background:linear-gradient(135deg, #0ebbfa 0%, #a516e7 100%);
   color:white;
 }
+
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
+}
+
+.close-btn:hover {
+  color: red;
+}
+
 
