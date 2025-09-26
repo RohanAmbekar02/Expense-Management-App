@@ -6,13 +6,16 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { Login } from './login/login';
+import { authguardGuard } from './authguard-guard';
 
 
 
 export const routes: Routes = [
     {
         path: 'fees',
-        component: Fees
+        component: Fees,
+        canActivate: [authguardGuard]
+
     },
 
      {
@@ -22,14 +25,18 @@ export const routes: Routes = [
     {
         path: 'login',
         component: Login
+        
     },
     {
         path: 'Dashboard',
-        component: Dashboard
+        component: Dashboard,
+         canActivate: [authguardGuard]
+          
     },
     {
         path: 'students',
-        component: StudentList
+        component: StudentList,
+             canActivate: [authguardGuard]
     },
     //  {
     //     path: 'TotalStudent',

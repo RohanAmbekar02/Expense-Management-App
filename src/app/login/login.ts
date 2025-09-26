@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import Swal from 'sweetalert2';
+import { AuthService } from '../services/auth-service';
 
 @Component({
   selector: 'app-login',
@@ -22,21 +23,22 @@ import Swal from 'sweetalert2';
   styleUrl: './login.css'
 })
 export class Login {
- hidePassword = true;
-
-
+  hidePassword = true;
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private snackBar: MatSnackBar, private router: Router ,
-) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.loginForm = this.fb.group({
       mobile: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
       password: ['', Validators.required],
     });
   }
-onLogin() {
+
+  onLogin() {
     if (this.loginForm.invalid) {
-   
       Swal.fire({
         icon: 'warning',
         title: 'Required Fields!',
@@ -47,65 +49,30 @@ onLogin() {
 
     const { mobile, password } = this.loginForm.value;
 
-    if (mobile === '7741068506' && password === 'Srushti123') {
-      Swal.fire({
-        icon: 'success',
-        title: 'Login Successful',
-        text: 'Welcome back!',
-        timer: 1500,
-        showConfirmButton: false
-      }).then(() => {
-        this.router.navigate(['/Dashboard']);
-      });
-      // Redirect or reset form
-      this.loginForm.reset();
-    } else {
-      Swal.fire({
-        icon: 'error',
-        title: 'Login Failed',
-        text: 'Invalid mobile number or password.'
-      });
-    }
+    this.authService.login({ mobile, password }).subscribe({
+      next: (res) => {
+        // API success - JWT मिळेल
+        localStorage.setItem('token', res.token);
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Login Successful',
+          text: 'Welcome back!',
+          timer: 1500,
+          showConfirmButton: false
+        }).then(() => {
+          this.router.navigate(['/Dashboard']);
+        });
+
+        this.loginForm.reset();
+      },
+      error: (err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Login Failed',
+          text: err.error?.msg || 'Invalid mobile number or password.'
+        });
+      }
+    });
   }
- 
-
-//   onLogin() {
-//   const mobile = this.loginForm.get('mobile')?.value;
-//   const password = this.loginForm.get('password')?.value;
-
-//   if (this.loginForm.valid) {
-//     if (mobile === '7741068506' && password === 'Srushti123') {
-//       const snackRef = this.snackBar.open('Login Successfully ✅', 'OK', {
-//         duration: 2000,
-//         horizontalPosition: 'center',
-//         verticalPosition: 'top',
-//         panelClass: 'white-snackbar'
-//       });
-
-//       snackRef.afterDismissed().subscribe(() => {
-//         this.router.navigate(['/Dashboard']); // ✅ lowercase route
-//       });
-//     } else {
-//       const snackRef = this.snackBar.open('Login Failed ❌ Invalid credentials', 'Close', {
-//         duration: 3000,
-//         horizontalPosition: 'center',
-//         verticalPosition: 'top',
-//       });
-
-//       snackRef.afterDismissed().subscribe(() => {
-//         this.loginForm.reset(); // ✅ Reset form after snackbar closes
-//       });
-//     }
-//   } else {
-//     const snackRef = this.snackBar.open('Please fill form correctly ❌', 'Close', {
-//       duration: 3000,
-//       horizontalPosition: 'center',
-//       verticalPosition: 'top',
-//     });
-
-//     snackRef.afterDismissed().subscribe(() => {
-//       this.loginForm.reset(); // ✅ Also reset if form is invalid
-//     });
-//   }
-// }
 }
