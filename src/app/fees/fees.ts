@@ -1,60 +1,4 @@
 
- 
- 
-
-// import { Component, OnInit } from '@angular/core';
-// import { CommonModule } from '@angular/common';
-// import { MatTableModule } from '@angular/material/table';
-// import { MatButtonModule } from '@angular/material/button';
-// import { FeesDeatils } from '../services/fees-deatils';
-// import { NgxPaginationModule } from 'ngx-pagination';
-// import { FormsModule } from '@angular/forms';
-
-// @Component({
-//   selector: 'app-fees',
-//   standalone: true,
-//   imports: [CommonModule, MatTableModule, MatButtonModule,FormsModule,NgxPaginationModule],
-//   templateUrl: './fees.html',
-//   styleUrls: ['./fees.css']
-// })
-// export class FeesComponent implements OnInit {
-//   fees: any[] = [];
-//   filteredFees: any[] = [];
-//   feesFilter: string = '';
-//   feesPage: number = 1;
-
-//   constructor(private feesservice: FeesDeatils) {}  
-//   ngOnInit(): void {
-//     this.loadFees();
-//   }
-
-//   loadFees() {
-//     this.feesservice.getFees().subscribe(data => {
-//       this.fees = data;
-//       this.filteredFees = data;
-//     });
-//   }
-
-//    applyFeesFilter() {
-//     this.filteredFees = this.fees.filter(f =>
-//       f.student?.name.toLowerCase().includes(this.feesFilter.toLowerCase()) ||
-//       f.courseName.toLowerCase().includes(this.feesFilter.toLowerCase())
-//     );
-//     this.feesPage = 1;
-//   }
-
-//     deleteFee(id: string) {
-//     this.feesservice.deleteFee(id).subscribe(() => this.loadFees());
-//   }
-
-//   editFee(fee: any) {
-//     console.log('Edit Fee', fee);
-
-//   }
- 
-// }
-
-
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
@@ -67,7 +11,8 @@ import { FeesForm } from '../fees-form/fees-form';
 import Swal from 'sweetalert2';
 import { NavbarFooter } from "../navbar-footer/navbar-footer";
 import * as XLSX from 'xlsx';
-
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 import 'jspdf-autotable';
 @Component({
   selector: 'app-fees',
@@ -118,7 +63,28 @@ export class FeesComponent implements OnInit {
     XLSX.utils.book_append_sheet(wb, ws, 'Fees');
     XLSX.writeFile(wb, 'fees.xlsx');
   }
+downloadPDF() {
+  const doc = new jsPDF();
 
+  autoTable(doc, {
+    head: [['Student', 'Course', 'Total', 'Paid', 'Remaining', 'Status', 'Date']],
+    body: this.filteredFees.map(f => [
+      f.student?.name,
+      f.courseName,
+      f.totalFees,
+      f.paidFees,
+      f.remainingFees,
+      f.remainingFees > 0 ? 'Pursuing' : 'Completed',
+      (new Date(f.date)).toLocaleDateString('en-GB')
+    ]),
+    theme: 'grid',
+    styles: { fontSize: 10 },
+    // headStyles: { fillColor: [22, 160, 133] },
+    headStyles: { fillColor: [115, 50, 117] } 
+  });
+
+  doc.save('fees.pdf');
+}
  
 addFee() {
   const dialogRef = this.dialog.open(FeesForm);

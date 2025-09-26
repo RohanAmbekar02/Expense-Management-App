@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import * as XLSX from 'xlsx';
-import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { TotalStudent } from '../total-student/total-student';
 import { StudentService } from '../services/student.service';
@@ -14,6 +13,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule  } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { NavbarFooter } from '../navbar-footer/navbar-footer';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
+
 @Component({
   selector: 'app-student-list',
   standalone: true,
@@ -31,6 +33,20 @@ export class StudentList implements OnInit{
     XLSX.utils.book_append_sheet(wb, ws, 'Students');
     XLSX.writeFile(wb, 'students.xlsx');
   }
+
+ downloadPDF() {
+  const doc = new jsPDF();
+
+  autoTable(doc, {
+    head: [['Name', 'Contact']],
+    body: this.filteredStudents.map(s => [s.name, s.contact]),
+    theme: 'grid',
+    styles: { fontSize: 10 },
+      headStyles: { fillColor: [115, 50, 117] } 
+  });
+
+  doc.save('students.pdf');
+}
 
 
   students: any[] = [];

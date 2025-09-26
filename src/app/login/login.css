@@ -54,8 +54,9 @@ mat-form-field {
 }
 
 .gradient-button:hover {
-  /* background: linear-gradient(to right, #87ceeb, #2196f3);  */
-   background:linear-gradient(135deg, #0ebbfa 0%, #a516e7 100%);
+  
+   /* background:linear-gradient(135deg, #0ebbfa 0%, #a516e7 100%); */
+   background:linear-gradient(135deg, #c33764 30%, #1d2671 80%);
 }
 
 .full-width {
