@@ -3,15 +3,36 @@ const router = express.Router();
 const Fees = require("../models/fees_details");
 
 
-router.post("/", async (req, res) => {
+router.post('/', async (req, res) => {
   try {
-    const fees = new Fees(req.body);
-    const savedFees = await fees.save();
-    res.json(savedFees);
+    const { student, courseName, totalFees, paidFees, date } = req.body;
+
+    if (!student || !courseName || !totalFees || !paidFees || !date) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
+    
+    const fee = new Fees({
+      student,
+      courseName,
+      totalFees,
+      paidFees,
+      date
+    });
+
+    await fee.save();
+
+    const populatedFee = await Fees.findById(fee._id).populate("student", "name");
+
+    res.status(201).json(populatedFee);
+
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error('Error adding fee:', err.message);
+    res.status(500).json({ message: "Server Error", error: err.message });
   }
 });
+
+
 
 router.get("/", async (req, res) => {
   try {

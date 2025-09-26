@@ -22,7 +22,7 @@
 
 .input-group {
   display: flex;
-  align-items: center;
+  align-items: left;
   background: #f4f4f4;
   margin: 15px 0;
   padding: 10px;

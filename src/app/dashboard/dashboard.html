@@ -1,4 +1,4 @@
-
+<app-navbar-footer></app-navbar-footer>
 <div class="container my-5">
   <div class="row g-4">
 
@@ -7,7 +7,7 @@
         <div class="card-body">
           <i class="fas fa-user-graduate card-icon"></i>
           <h5 class="card-title mt-3" routerLink="/TotalStudent">Total Student</h5>
-          <p class="card-text fs-4 fw-bold">120</p>
+          <p class="card-text fs-4 fw-bold">{{ totalStudents }}</p>
         </div>
       </div>
     </div>
@@ -17,8 +17,8 @@
       <div class="card stat-card text-center shadow-lg">
         <div class="card-body">
           <i class="fas fa-wallet card-icon"></i>
-          <h5 class="card-title mt-3">Total Balance</h5>
-          <p class="card-text fs-4 fw-bold">₹ 2,50,000</p>
+          <h5 class="card-title mt-3">Total Paid Fees</h5>
+          <p class="card-text fs-4 fw-bold">₹ {{ totalPaidFees }}</p>
         </div>
       </div>
     </div>
@@ -29,7 +29,7 @@
         <div class="card-body">
           <i class="fas fa-check-circle card-icon"></i>
           <h5 class="card-title mt-3">Course Completed</h5>
-          <p class="card-text fs-4 fw-bold">85</p>
+          <p class="card-text fs-4 fw-bold">{{ completedStudents }}</p>
         </div>
       </div>
     </div>

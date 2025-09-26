@@ -1,0 +1,90 @@
+
+.custom-navbar {
+  background: linear-gradient(180deg, #142870 0%, #340c42 100%);
+  min-height: 65px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030;
+  padding: 0 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 600px;
+}
+
+
+
+.logo-img {
+  width: 95px;
+  height: 40px;
+  object-fit: contain;
+
+  
+}
+
+
+.right-content {
+  margin-right: 20px;
+}
+
+
+.logout-icon {
+  cursor: pointer;
+  transition: 0.2s;
+  margin-left: 10px;
+  
+}
+
+.logout-icon:hover {
+  color: #ffdd57;
+  transform: scale(1.2);
+}
+
+
+.navbar-brand span {
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+
+
+
+
+
+
+
+
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: linear-gradient(180deg, #142870 0%, #340c42 100%);
+  
+
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.nav-item {
+  flex: 1;
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.nav-item i {
+  font-size: 22px;
+ 
+  display: block;
+  margin-bottom: 4px;
+}
+
+.nav-item:hover {
+  
+  cursor: pointer;
+}

@@ -1,50 +1,61 @@
 
 <br><br><br>
-<div class="container my-5">
-  <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-3 gap-2">
-    
-<h5>Fees Records</h5>
+<app-navbar-footer></app-navbar-footer>
+ <div class="container my-5 mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h5>Fees Records</h5>
+        
+    <div class="d-flex flex-row align-items-center gap-2 w-md-auto">
+      <input type="text" class="form-control" placeholder="Search..."
+      [(ngModel)]="feesFilter" (input)="applyFeesFilter()" style="min-width: 200px;" />
 
-<div class="d-flex flex-row align-items-center gap-2  w-md-auto">
-      <input type="text" class="form-control w-25" placeholder="Search..."[(ngModel)]="feesFilter" 
-        (input)="applyFeesFilter()"  style="min-width: 200px;" />
-     <button class="btn btn-add" > <i class="fas fa-plus"> </i> </button>
-</div>
-</div>
-<table class="table table-bordered table-striped">
-  <thead class="headingcolor">
-    <tr>
-      <th>Student</th>
-      <th>Course</th>
-      <th>Total</th>
-      <th>Paid</th>
-      <th>Remaining</th>
-      <th>Date</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody  class="text-center">
-    <tr *ngFor="let f of filteredFees | paginate: { itemsPerPage: 5, currentPage: feesPage }">
-      <td>{{ f.student?.name }}</td>
-      <td>{{ f.courseName }}</td>
-      <td>{{ f.totalFees }}</td>
-      <td>{{ f.paidFees }}</td>
-      <td>{{ f.remainingFees }}</td>
-      <td>{{ f.date | date:'shortDate' }}</td>
-      <td>
-       <button class="btn btn-sm btn-outline-primary me-1" >
-              <i class="fas fa-edit"></i>
-            </button>
-            <button class="btn btn-sm btn-outline-danger" >
-              <i class="fas fa-trash"></i>
-            </button>  
-          </td>
-    </tr>
-  </tbody>
-</table>
- <div class="d-flex justify-content-center mt-4">
-<pagination-controls (pageChange)="feesPage = $event"></pagination-controls>
-</div>
-</div>
-<hr>
+      <button class="btn btn-add" (click)="downloadExcel()" title="Download Excel">
+        <i class="fas fa-file-excel"></i>
+      </button>
+     
+      <button class="btn btn-add" (click)="addFee()">
+        <i class="fas fa-plus"></i>
+      </button>
+    </div>
+  </div>
 
+  <table class="table table-bordered table-striped text-center">
+    <thead class="headingcolor text-white">
+      <tr>
+        <th>Student</th>
+        <th>Course</th>
+        <th>Total</th>
+        <th>Paid</th>
+        <th>Remaining</th>
+        <th>Status</th> 
+        <th>Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let f of filteredFees | paginate: { itemsPerPage: 5, currentPage: feesPage }">
+        <td>{{ f.student?.name }}</td>
+        <td>{{ f.courseName }}</td>
+        <td>{{ f.totalFees }}</td>
+        <td>{{ f.paidFees }}</td>
+        <td>{{ f.remainingFees }}</td>
+        <td>
+          {{ f.remainingFees > 0 ? 'Pursuing' : 'Completed' }}
+         </td> 
+        <td>{{ f.date | date:'dd/MM/yyyy' }}</td>
+        <td>
+          <button class="btn btn-sm btn-outline-primary me-1" (click)="editFee(f)">
+            <i class="fas fa-edit"></i>
+          </button>
+          <button class="btn btn-sm btn-outline-danger" (click)="deleteFee(f._id)">
+            <i class="fas fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-center mt-4">
+    <pagination-controls (pageChange)="feesPage = $event"></pagination-controls>
+  </div>
+</div>

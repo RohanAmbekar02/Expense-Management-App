@@ -7,7 +7,8 @@ import { Student } from '../services/student.model';
 import { HttpClientModule  } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MatDialogRef } from '@angular/material/dialog';
-
+import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { Inject } from '@angular/core';
 @Component({
   selector: 'app-total-student',
   imports: [CommonModule, ReactiveFormsModule, FormsModule, HttpClientModule ],
@@ -23,7 +24,9 @@ export class TotalStudent {
   editMode: boolean = false;
   editId: string = '';
 
-  constructor(private fb: FormBuilder, private studentService: StudentService, private router : Router ,private dialogRef: MatDialogRef<TotalStudent>) {}
+  constructor(private fb: FormBuilder, private studentService: StudentService, private router : Router ,private dialogRef: MatDialogRef<TotalStudent>,
+     @Inject(MAT_DIALOG_DATA) public data: Student | null
+  ) {}
 
   ngOnInit(): void {
     this.loadStudents();
@@ -31,6 +34,14 @@ export class TotalStudent {
       name: ['', Validators.required],
       contact: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]]
     });
+     if (this.data) {
+    this.studentForm.patchValue({
+      name: this.data.name,
+      contact: this.data.contact
+    });
+    this.editMode = true;
+    this.editId = this.data._id!;
+  }
   }
 
   loadStudents() {
@@ -47,32 +58,7 @@ export class TotalStudent {
     );
   }
 
-  // onSubmit() {
-  //   if (this.studentForm.invalid) return;
-
-  //   const studentData = this.studentForm.value;
-
-  //   if (this.editMode) {
-  //     this.studentService.updateStudent(this.editId, studentData).subscribe({
-  //       next: () => {
-  //         Swal.fire('Updated!', 'Student updated successfully!', 'success');
-  //         this.loadStudents();
-  //         this.studentForm.reset();
-  //         this.editMode = false;
-  //       },
-  //       error: () => Swal.fire('Error!', 'Failed to update student', 'error')
-  //     });
-  //   } else {
-  //     this.studentService.addStudent(studentData).subscribe({
-  //       next: () => {
-  //         Swal.fire('Added!', 'Student added successfully!', 'success');
-  //         this.loadStudents();
-  //         this.studentForm.reset();
-  //       },
-  //       error: () => Swal.fire('Error!', 'Failed to add student', 'error')
-  //     });
-  //   }
-  // }
+  
 onSubmit() {
   if (this.studentForm.invalid) return;
 

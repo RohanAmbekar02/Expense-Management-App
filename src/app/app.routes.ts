@@ -5,6 +5,7 @@ import { FeesComponent as Fees } from './fees/fees';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
+import { Login } from './login/login';
 
 
 
@@ -13,9 +14,14 @@ export const routes: Routes = [
         path: 'fees',
         component: Fees
     },
+
      {
         path: '',
-        component: Dashboard
+        component: Login
+    },
+    {
+        path: 'login',
+        component: Login
     },
     {
         path: 'Dashboard',

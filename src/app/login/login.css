@@ -1,0 +1,63 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  /* background-color: #ffffff; form background white */
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 30px;
+  background-color: white;
+
+  /* Enhanced shadow */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.icon-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.icon {
+  font-size: 100px;
+  /* background: linear-gradient(to right, #fdd835, #f44336); */
+  background: linear-gradient(135deg, #1d2671 0%, #c33764 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px;
+}
+
+.welcome-text {
+  font-weight: bold;
+  color: black;
+  margin-top: 20px;
+  text-align: center;
+}
+
+mat-form-field {
+  margin-bottom: 20px;
+}
+
+.gradient-button {
+  /* background: linear-gradient(to right, #fdd835, #f44336); */
+  background: linear-gradient(135deg, #1d2671 0%, #c33764 100%);
+  color: white;
+ font-size: 20px;
+  transition: background 0.3s ease;
+  border-radius: 5px;
+  padding: 25px;
+}
+
+.gradient-button:hover {
+  /* background: linear-gradient(to right, #87ceeb, #2196f3);  */
+   background:linear-gradient(135deg, #0ebbfa 0%, #a516e7 100%);
+}
+
+.full-width {
+  width: 100%;
+}

@@ -1,0 +1,60 @@
+
+    <div class="modal-header bg-white text-dark text-center ">
+      <h5 class="modal-title text-center" >Fees Details</h5>
+      <button type="button" class="btn-close btn-close-dark" aria-label="Close" (click)="closeForm()"> </button>
+    </div>
+
+    <div class="modal-body bg-white">
+
+      <form [formGroup]="feeForm" (ngSubmit)="onSubmit()">
+
+
+        <div class="row g-3 mb-3">
+        
+          <div class="col-md-6">
+            <label class="form-label"><i class="fas fa-book me-1"></i>Course Name</label>
+            <input type="text" class="form-control" placeholder="Enter Course Name" formControlName="courseName">
+          </div>
+            <div class="col-md-6">
+        <label class="form-label"><i class="fas fa-user me-1"></i>Student</label>
+           <select class="form-select" formControlName="student">
+           <option value="">Select Student</option>
+           <option *ngFor="let s of students" [ngValue]="s._id">{{ s.name }}</option>
+        </select>
+          </div>
+        </div>
+
+      
+        <div class="row g-3 mb-3">
+          <div class="col-md-6">
+            <label class="form-label"><i class="fas fa-dollar-sign me-1"></i>Total Fees</label>
+            <input type="number" class="form-control" placeholder="Enter Total Fees" formControlName="totalFees">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label"><i class="fas fa-credit-card me-1"></i>Paid Fees</label>
+            <input type="number" class="form-control" placeholder="Enter Paid Fees" formControlName="paidFees">
+          </div>
+        </div>
+
+    
+        <div class="row g-3 mb-4">
+          <div class="col-md-6">
+            <label class="form-label"><i class="fas fa-wallet me-1"></i>Remaining Fees</label>
+                <input type="number" class="form-control" placeholder="Remaining Fees" formControlName="remainingFees" readonly>
+          </div> 
+          <div class="col-md-6">
+            <label class="form-label"><i class="fas fa-calendar-alt me-1"></i>Payment Date</label>
+                <input type="date" class="form-control" formControlName="date" [attr.min]="minDate">
+          </div> 
+        </div>
+
+        <div class="d-grid mb-2">
+          <button type="submit" class="mr-2 button w-100 btn-block" [disabled]="feeForm.invalid">
+            {{ editMode ? 'Update Fee' : 'Submit' }}
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+

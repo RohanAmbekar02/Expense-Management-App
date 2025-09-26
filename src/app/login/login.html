@@ -1,0 +1,40 @@
+
+<div class="container">
+  <mat-card class="login-card">
+    <div class="icon-section">
+      <span class="icon"><i class="fa-solid fa-circle-user"></i></span>
+      <h2 class="welcome-text">Welcome Back.....!!</h2>
+      <p style="font-size: 17px;">Sign in your account to continue</p>
+      
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <mat-form-field appearance="outline" class="full-width">
+        
+        <mat-label>Mobile Number</mat-label>
+        <input matInput formControlName="mobile" maxlength="10" />
+        <mat-error *ngIf="loginForm.get('mobile')?.touched && loginForm.get('mobile')?.invalid">
+          Enter valid 10 digit mobile number
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+    
+        <mat-label>Password</mat-label>
+        <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" />
+        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Toggle password visibility'" type="button">
+          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-error *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+          Password is required
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button class="gradient-button full-width " style="color: white;" type="submit">
+        Login
+      </button>
+    </form>
+  </mat-card>
+</div>
+
+<router-outlet></router-outlet>
